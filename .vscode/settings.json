@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/5eb98c8a-36c1-4ee0-819d-1fecae7a08d8/AppServices/subscriptions/5eb98c8a-36c1-4ee0-819d-1fecae7a08d8/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/meetbank",
+    "appService.deploySubpath": "."
+}
