@@ -3,6 +3,7 @@ from bank.models import Account, Imagem, Invoice, Loan, LoanPayment, Statement, 
 from bank.serializer import AccountSerializer, AddImageSerializer, AddressSerializer, CardSerializer, ClientSerializer, ImageSerializer, InvoiceSerializer, LoanPaymentSerializer, LoanSerialier, StatementSerializer, TransferSerializer, UserSerializer
 from rest_framework.response import Response
 from rest_framework import status
+
 # Create your views here.
 class UserList(ListCreateAPIView):
     queryset = User.objects.all()
@@ -22,26 +23,21 @@ class UserList(ListCreateAPIView):
                 if u.cpf == cpfUser and u.password == passwordUser:
                     lista_clientes = Client.objects.all()
                     for c in lista_clientes:
-                        print(f"USER  {u.id}")
-                        print(f"ID  {c}")
                         if str(c) == str(u.id):
                             encontrado = True
                             cliente = {
-                                "nome":c.name,
-                                "last_name":c.last_name,
-                                "email":c.email,
-                                "phone":c.phone_number,
-                                "nascimento":c.birth_date,
-                                "user":c.user,
-                                "type":c.type,
+                                "Nome":c.name + " " + c.last_name,
+                                "E-mail":c.email,
+                                "Telefone":c.phone_number,
+                                "Data de Nascimento":c.birth_date,
                             }
-                            
                             break
                     if encontrado:
-                        return Response({'cliente':str(cliente)}, status=status.HTTP_200_OK)
+                        return Response({'cliente':cliente}, status=status.HTTP_200_OK)
                     else:
                         return Response({'cliente':None}, status=status.HTTP_401_UNAUTHORIZED)
         else:
+
             return super().create(request, *args, **kwargs)
 
 class AccountList(ListCreateAPIView):
