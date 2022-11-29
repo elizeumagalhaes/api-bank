@@ -37,7 +37,6 @@ class UserList(ListCreateAPIView):
                     else:
                         return Response({'cliente':None}, status=status.HTTP_401_UNAUTHORIZED)
         else:
-
             return super().create(request, *args, **kwargs)
 
 class AccountList(ListCreateAPIView):
